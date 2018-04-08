@@ -4,16 +4,23 @@ import './App.css';
 
 class App extends Component {
 
+  // fake authentication Promise
+  authenticate(){
+    return new Promise(resolve => setTimeout(resolve, 2000))
+  }
+
   componentDidMount(){
-    const ele = document.getElementById('ipl-progress-indicator')
-    if(ele){
-      setTimeout(() => {
+    this.authenticate().then(() => {
+      const ele = document.getElementById('ipl-progress-indicator')
+      if(ele){
+        // fade out
         ele.classList.add('available')
         setTimeout(() => {
+          // remove from DOM
           ele.outerHTML = ''
         }, 2000)
-      }, 1000)
-    }
+      }
+    })
   }
 
   render() {
